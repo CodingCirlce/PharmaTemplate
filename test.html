@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KureKraft Therapies</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Adjust as needed */
+            grid-gap: 10px;
+            padding: 20px;
+            background-color: #e0f2f7; /* Light background color */
+        }
+
+        .category {
+            background-color: #81c784; /* Light green background */
+            color: black;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            border: none;
+        }
+        .category:first-child{
+            background-color: #0d47a1;
+            color: white;
+        }
+
+        .category:hover {
+            background-color: #66bb6a; /* Darker green on hover */
+        }
+
+        .products {
+            display: none; /* Initially hide all product lists */
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            grid-column: 1 / -1; /*span all columns*/
+        }
+        .products ul{
+            list-style: none;
+            padding: 0;
+        }
+        .products.active {
+            display: block; /* Show the active product list */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr); /* Two columns on smaller screens */
+            }
+        }
+        @media (max-width: 500px) {
+            .container {
+                grid-template-columns: repeat(1, 1fr); /* one columns on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="category" data-category="oncology">ONCOLOGY</button>
+        <button class="category" data-category="anti-infectives">ANTI-INFECTIVES</button>
+        <button class="category" data-category="gastrointestinal">GASTROINTESTINALS</button>
+        <button class="category" data-category="respiratory">RESPIRATORY & ANTIHISTAMINES</button>
+        <button class="category" data-category="orthopedics">ORTHOPEDICS & ANALGESICS</button>
+        <button class="category" data-category="cardiovascular">CARDIOVASCULAR & ANTIDIABETICS</button>
+        <button class="category" data-category="gynaecology">GYNAECOLOGY</button>
+        <button class="category" data-category="urology">UROLOGY & NEPHROLOGY</button>
+        <button class="category" data-category="neuro-psychiatric">NEURO-PSYCHIATRIC</button>
+        <button class="category" data-category="ophthalmology">OPHTHALMOLOGY</button>
+        <button class="category" data-category="dermatology">DERMATOLOGY & SKIN CARE</button>
+        <button class="category" data-category="steroids">STEROIDS</button>
+        <button class="category" data-category="nutra">NUTRA & SUPPLEMENTS</button>
+
+        <div class="products" id="oncology">
+            <ul>
+                <li>Oncology Product 1</li>
+                <li>Oncology Product 2</li>
+                </ul>
+        </div>
+        <div class="products" id="anti-infectives">
+            <ul>
+                <li>Anti-infectives Product 1</li>
+                <li>Anti-infectives Product 2</li>
+            </ul>
+        </div>
+        <div class="products" id="gastrointestinal">
+            <ul>
+                <li>Gastrointestinal Product 1</li>
+            </ul>
+        </div>
+        <div class="products" id="respiratory">
+            <ul>
+                <li>Respiratory Product 1</li>
+                <li>Respiratory Product 2</li>
+                <li>Respiratory Product 3</li>
+            </ul>
+        </div>
+        <div class="products" id="orthopedics"></div>
+        <div class="products" id="cardiovascular"></div>
+        <div class="products" id="gynaecology"></div>
+        <div class="products" id="urology"></div>
+        <div class="products" id="neuro-psychiatric"></div>
+        <div class="products" id="ophthalmology"></div>
+        <div class="products" id="dermatology"></div>
+        <div class="products" id="steroids"></div>
+        <div class="products" id="nutra"></div>
+    </div>
+
+    <script>
+        const categories = document.querySelectorAll('.category');
+        const productLists = document.querySelectorAll('.products');
+
+        categories.forEach(category => {
+            category.addEventListener('click', () => {
+                const targetCategory = category.dataset.category;
+
+                productLists.forEach(productList => {
+                    productList.classList.remove('active');
+                });
+
+                document.getElementById(targetCategory).classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
