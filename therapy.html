@@ -23,9 +23,10 @@
 
   <link rel="stylesheet" href="css/styles.css">
   <style>
-   table {
-        border-collapse: collapse;
-        width: 100%;
+    table {
+      border-collapse: collapse;
+      width: 95%;
+      margin-left: 2.5%;
     }
 
     th,
@@ -134,15 +135,31 @@
           </div>
         </div>
     
-        <h2 style="text-align: center;"><b>NEURO-PSYCHIATRIC</b></h2>
+        <h2 style="text-align: center;">NEURO-PSYCHIATRIC</h2>
+
+        <label for="rowSelector" style="text-align: center;margin-left: 2.5%;">Show
+          <select id="rowSelector" class="tableRows" onchange="updateTableRows('NEURO', this.value)">
+            <option value="select">select</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="all">All</option>
+          </select>
+          entries
+        </label>
+
+        <label class="searchBox" for="searchBox">Search Product:
+          <input type="text" id="searchBox" placeholder="Type Here..." oninput="searchTable('NEURO', this.value)">
+      </label>
 
 
-  <table class="responsive-table">
+  <table id="NEURO" class="responsive-table">
     <thead>
       <tr>
         <th>S.No.</th>
-        <th>COMPOSITION</th>
-        <th>DOSAGE</th>
+        <th style="cursor: pointer;" onclick="sortTable(1, 'NEURO')">COMPOSITION</th>
+                    <th style="cursor: pointer;" onclick="sortTable(2, 'NEURO')">DOSAGE</th>
         <th>PACK</th>
       </tr>
     </thead>

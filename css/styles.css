@@ -73,3 +73,42 @@
     color: #f00;
   }
   
+  .tableRows {
+    border-radius: 3px;
+    background-color: #fff;
+    color: #8c92a0;
+    border-color: #8c92a0
+  }
+  
+  input {
+    width: 150px;
+    color: #8c92a0;
+    font-style: italic;
+    border-color: aliceblue;
+  }
+  
+  table {
+    width: 95%;
+  }
+  
+  .searchBox {
+    float: right;
+    margin-right: 2.5%;
+  }
+  .showRows {
+    margin-left: 2.5%;
+  }
+  @media (max-width: 600px) {
+    input {
+        margin-left: 5px;
+        height: 25px;
+    }
+    .showRows {
+      font-size: 14px;
+    }
+    .searchBox {
+        float: left;
+        margin-left: 2.5%;
+        font-size: 14px;
+    }
+  }

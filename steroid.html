@@ -25,8 +25,9 @@
   <style>
    
    table {
-        border-collapse: collapse;
-        width: 100%;
+      border-collapse: collapse;
+      width: 95%;
+      margin-left: 2.5%;
     }
 
     th,
@@ -135,14 +136,30 @@
           </div>
         </div>
     
-        <h2 style="text-align: center;"><b>STEROIDS</b></h2>
+        <h2 style="text-align: center;">STEROIDS</h2>
 
-        <table class="responsive-table">
+        <label for="rowSelector" style="text-align: center;margin-left: 2.5%;">Show
+          <select id="rowSelector" class="tableRows" onchange="updateTableRows('STEROID', this.value)">
+            <option value="select">select</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="all">All</option>
+          </select>
+          entries
+        </label>
+
+        <label class="searchBox" for="searchBox">Search Product:
+          <input type="text" id="searchBox" placeholder="Type Here..." oninput="searchTable('STEROID', this.value)">
+      </label>
+
+        <table id="STEROID" class="responsive-table">
             <thead>
               <tr>
                 <th>S.No.</th>
-                <th>COMPOSITION</th>
-                <th>DOSAGE</th>
+                <th style="cursor: pointer;" onclick="sortTable(1, 'STEROID')">COMPOSITION</th>
+                <th style="cursor: pointer;" onclick="sortTable(2, 'STEROID')">DOSAGE</th>
                 <th>PACK</th>
               </tr>
             </thead>
