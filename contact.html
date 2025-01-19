@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Pharma &mdash; KodingCircle's Template</title>
+  <title>NovaPharma</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="css/aos.css">
 
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
 
 </head>
 
@@ -81,7 +83,7 @@
                     <li><a href="derma.html">DERMATOLOGY & SKIN CARE</a></li>
                     <li><a href="steroid.html">STEROIDS</a></li>
                     <li><a href="nutra.html">NUTRA & SUPPLEMENTS</a></li>
-                    
+
                   </ul>
                 </li>
                 <li><a href="certificate.html">Certificates/Licenses</a></li>
@@ -121,9 +123,9 @@
             <h2 class="h3 mb-5 text-black">Get In Touch</h2>
           </div>
           <div class="col-md-12">
-    
+
             <form action="#" method="post">
-    
+
               <div class="p-3 p-lg-5 border">
                 <div class="form-group row">
                   <div class="col-md-6">
@@ -147,7 +149,7 @@
                     <input type="text" class="form-control" id="c_subject" name="c_subject">
                   </div>
                 </div>
-    
+
                 <div class="form-group row">
                   <div class="col-md-12">
                     <label for="c_message" class="text-black">Message </label>
@@ -156,13 +158,13 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-lg-12">
-                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Send Message">
+                    <input type="submit" id="btn" class="btn btn-primary btn-lg btn-block" value="Send Message">
                   </div>
                 </div>
               </div>
             </form>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -206,7 +208,8 @@
 
             <div class="block-7">
               <h3 class="footer-heading mb-4">About Us</h3>
-              <p> As we continue to grow, we remain grounded in the core values of scientific integrity, collaboration, and patient-centered care.</p>
+              <p> As we continue to grow, we remain grounded in the core values of scientific integrity, collaboration,
+                and patient-centered care.</p>
             </div>
 
           </div>
@@ -224,7 +227,8 @@
             <div class="block-5 mb-5">
               <h3 class="footer-heading mb-4">Contact Info</h3>
               <ul class="list-unstyled">
-                <li class="address">uttar ujala ward no.28 near namra masjid flat no.02 haldwani nainital (263139) Uttarakhand</li>
+                <li class="address">uttar ujala ward no.28 near namra masjid flat no.02 haldwani nainital (263139)
+                  Uttarakhand</li>
                 <li class="phone"><a href="tel://23923929210">8954353685</a></li>
                 <li class="email">pharmanovion@gmail.com</li>
               </ul>
@@ -259,6 +263,62 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCc--Aa5JF6clqpT0rPUt6M1H0jTWxdgsc",
+      authDomain: "novion-pharma.firebaseapp.com",
+      projectId: "novion-pharma",
+      databaseUrl: "https://novion-pharma-default-rtdb.firebaseio.com/",
+      storageBucket: "novion-pharma.firebasestorage.app",
+      messagingSenderId: "23428261918",
+      appId: "1:23428261918:web:8509ce4ad75cc80e89660f"
+    };
+    firebase.initializeApp(firebaseConfig);
+    var messagesRef = firebase.database().ref('Collected Data');
+    document.querySelector("#btn").addEventListener('click', (e) => {
+      console.log('sent');
+      e.preventDefault();
+      const firstname = document.getElementById('c_fname').value;
+      const lastname = document.getElementById('c_lname').value;
+      const email = document.getElementById('c_email').value;
+      const subject = document.getElementById('c_subject').value;
+      const msg = document.getElementById('c_message').value;
+      const obj = {
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+        subject: subject,
+        message: msg
+      }
+      if (firstname != "" && lastname != "" && email != "" && subject != "" && msg != "") {
+        messagesRef.push(obj);
+        document.getElementById('c_fname').value = "";
+        document.getElementById('c_lname').value = "";
+        document.getElementById('c_email').value = "";
+        document.getElementById('c_subject').value = "";
+        document.getElementById('c_message').value = "";
+        alert("Message Has Been Send....");
+      }
+      else {
+        if (firstname == "")
+          alert("Enter First name");
+        else if (lastname == "")
+          alert("Enter Last name");
+
+        else if (email == "")
+          alert("Enter Email")
+
+        else if (subject == "")
+          alert("Enter Subject")
+
+        else if (msg == "")
+          alert("Enter Message")
+
+      }
+    });
+  </script>
 
 </body>
 
